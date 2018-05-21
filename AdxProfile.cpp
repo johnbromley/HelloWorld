@@ -9,6 +9,7 @@
 #include "AdxProfile.h"
 
 
+#john added this comment
 
 DefaultValue sDefault[] =
 {
@@ -25,13 +26,15 @@ char*     _pathIni;		// chemin de .ini - mm 05.07
 Fonction	:	AdxProfile_PutValue
 Description :	Enregistre une valeur dans une section du .INI
 
-Paramètres	:	Nom de la section générale
+
+ParamÃ¨tres	:	Nom de la section gÃ©nÃ©rale
 				Nom du parametre
-				Chaine à enregistrer
+				Chaine Ã  enregistrer
 Retour		: Bool
 Auteur		: Marc
-Créé le		: 19/06/98
-Modifié le  : 
+CrÃ©Ã© le		: 19/06/98
+ModifiÃ© le  : 
+
 ------------------------------------------------------- */
 BOOL AdxProfile_PutValue (char* pszSectionName, char* pszParamName, char* pszValeur)
 {
@@ -43,16 +46,18 @@ BOOL AdxProfile_PutValue (char* pszSectionName, char* pszParamName, char* pszVal
 
 /* -------------------------------------------------------
 Fonction	:	AdxProfile_GiveValue
-Description :	Renvoit une valeur stockée dans le .INI
 
-Paramètres	:	Nom de la section générale
+Description :	Renvoit une valeur stockÃ©e dans le .INI
+
+ParamÃ¨tres	:	Nom de la section gÃ©nÃ©rale
 				Nom du parametre
 				Adresse du pointeur recevant la chaine
-					L'appelant est responsable de la libération de la chaine
+					L'appelant est responsable de la libÃ©ration de la chaine
 Retour		: Bool
 Auteur		: Marc
-Créé le		: 27/03/98
-Modifié le  : 
+CrÃ©Ã© le		: 27/03/98
+ModifiÃ© le  : 
+
 ------------------------------------------------------- */
 BOOL AdxProfile_GiveValue (char* pszSectionName, char* pszParamName, char** ppszRetour)
 {
@@ -80,23 +85,26 @@ BOOL AdxProfile_GiveValue (char* pszSectionName, char* pszParamName, char** ppsz
 		sprintf (*ppszRetour, "%s", &szTemp[0]);
 	}	
 	// S'il y a quelquechose dans dwRet, 
-	// c'est qu'il a trouvé la section ou la valeur par défault
+	// c'est qu'il a trouvÃ© la section ou la valeur par dÃ©fault
 	return (dwRet > 0 ? TRUE : FALSE );
 }
 
 /* -------------------------------------------------------
 Fonction	:	AdxProfile_SetStandardValue
-Description :	Renvoit la valeur par défault du parametre
 
-Paramètres	:	Nom de la section
+Description :	Renvoit la valeur par dÃ©fault du parametre
+
+ParamÃ¨tres	:	Nom de la section
+
 				Nom du parametre
 				Zone de stockage de la valeur
 				Longueur de la zone de stockage
 
-Retour		: Nombre de caracteres stockés
+Retour		: Nombre de caracteres stockÃ©s
 Auteur		: Marc
-Créé le		: 19/06/98
-Modifié le  : 
+CrÃ©Ã© le		: 19/06/98
+ModifiÃ© le  : 
+
 ------------------------------------------------------- */
 DWORD AdxProfile_SetStandardValue (char* pszSectionName, char* pszParamName, char* pszRetour, DWORD dwLong)
 {
@@ -111,7 +119,9 @@ DWORD AdxProfile_SetStandardValue (char* pszSectionName, char* pszParamName, cha
 	while (_stricmp (sDefault[i].dvSection, pszSectionName) != 0) 
 	{
 		if (sDefault[i].dvSection[0] == 0)
-			return 0;		// on a parcouru la table mais on n'a rien trouvé
+
+			return 0;		// on a parcouru la table mais on n'a rien trouvÃ©
+
 		i++;
 	}
 
@@ -126,7 +136,9 @@ DWORD AdxProfile_SetStandardValue (char* pszSectionName, char* pszParamName, cha
 				bOk = FALSE;	// le nom de la cle en parametre est plus long
 				break;
 			}
-			// On traite les valeurs generiques (avec une étoile à la fin)
+
+			// On traite les valeurs generiques (avec une Ã©toile Ã  la fin)
+
 			if (sDefault[i].dvCle[j] == '*')
 				break;
 			// On controle que les car sont identiques
@@ -149,7 +161,7 @@ DWORD AdxProfile_SetStandardValue (char* pszSectionName, char* pszParamName, cha
 				*(pszRetour + dwLong) = '\0';
 				dwRet = dwLong - 1;;
 			}
-			break;	// On sort de la boucle avec dwRet chargé
+			break;	// On sort de la boucle avec dwRet chargÃ©
 		}
 		i++;
 	}
@@ -160,13 +172,13 @@ DWORD AdxProfile_SetStandardValue (char* pszSectionName, char* pszParamName, cha
 Fonction	:	AdxProfile_GiveFileIniName
 Description :	Renvoit le nom complet du fichier.ini de l'application
 
-Paramètres	:	Adresse de la chaine a renseigner
-				Longuer de la chaine passée
+ParamÃ¨tres	:	Adresse de la chaine a renseigner
+				Longuer de la chaine passÃ©e
 
 Retour		: rien
 Auteur		: Marc
-Créé le		: 03/04/98
-Modifié le  : 
+CrÃ©Ã© le		: 03/04/98
+ModifiÃ© le  : 
 ------------------------------------------------------- */
 void AdxProfile_GiveFileIniName (char* pszRetour, int nLong)
 {
@@ -180,13 +192,15 @@ void AdxProfile_GiveFileIniName (char* pszRetour, int nLong)
 Fonction	:	AdxProfile_GiveFileDirectory
 Description :	Renvoit le nom de la directory de l'application sans le \ de fin
 
-Paramètres	:	Adresse de la chaine a renseigner
+ParamÃ¨tres	:	Adresse de la chaine a renseigner
+
 				Longueur de la chaine
 
 Retour		: rien
 Auteur		: Marc
-Créé le		: 29/06/98
-Modifié le  : 11/05/07 
+CrÃ©Ã© le		: 29/06/98
+ModifiÃ© le  : 11/05/07 
+
 ------------------------------------------------------- */
 void AdxProfile_GiveFileDirectory (char* pszRetour, int nLong)
 {
@@ -214,12 +228,13 @@ void AdxProfile_GiveFileDirectory (char* pszRetour, int nLong)
 Fonction	:	setPathIni
 Description :	recupere nouveau chemin (pathIni) pour le fichier .ini.
 
-Paramètres	:	Nouveau chemin du fichier .ini
+ParamÃ¨tres	:	Nouveau chemin du fichier .ini
 
 Retour		: rien
 Auteur		: Muriel
-Créé le		: 11/05/07 
-Modifié le  : 
+CrÃ©Ã© le		: 11/05/07 
+ModifiÃ© le  : 
+
 ------------------------------------------------------- */
 void  setPathIni(const char* pathIni) 
 {
@@ -228,3 +243,4 @@ void  setPathIni(const char* pathIni)
 	_pathIni = new char[_MAX_PATH];
 	strcpy( _pathIni, pathIni);
 }
+
