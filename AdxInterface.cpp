@@ -1,3 +1,4 @@
+// Added in fix1
 // AdxInterface.cpp
 // ----------------
 // project : Adonix X3 Optimisation
@@ -110,9 +111,9 @@ IlvBoolean AdxInterface::initInterface(	IlvAny instance,
 
 
 //	MessageBox(NULL,"Initialisation interface 1","test",MB_OK);
-	//  llc 03.02 
+	//  llc 03.02
 //	si le séparateur décimal dans les Paramètres régionaux n'est pas le point,
-//  comme en France où c'est la virgule, la fonction getDouble (via atof) ne reconnait 
+//  comme en France où c'est la virgule, la fonction getDouble (via atof) ne reconnait
 //	pas la partie décimale !
 //  Alors faisons comme si nous étions anglo-saxons en ce qui concerne les décimales ...
     setlocale(LC_NUMERIC, "English");
@@ -139,7 +140,7 @@ IlvBoolean AdxInterface::initInterface(	IlvAny instance,
 							  this);
 
 	// 05.07 chemin du .ini
-	setPathIni(_pszPathIni);	
+	setPathIni(_pszPathIni);
 
 	// 06.04 TRACE
 	char* pszTrace;
@@ -208,7 +209,7 @@ IlvBoolean AdxInterface::initInterface(	IlvAny instance,
 
 //--------------------------------------------------------------
 // Initialisation interface : suite
-IlvBoolean AdxInterface::completeInitInterface(	IlvAny instance, 
+IlvBoolean AdxInterface::completeInitInterface(	IlvAny instance,
 												const char* appName,
 												const char* language,
 												const char* pszPathX3,
@@ -250,7 +251,7 @@ IlvBitmap* AdxInterface::LoadBackgroundBitmap(IlvDisplay* Display,AdxGadgetConta
 
 
 	IlvRGBBitmapData* _srcdata;
-    _srcdata = (IlvRGBBitmapData*)(Display->readBitmapData(szFileIcons));	
+    _srcdata = (IlvRGBBitmapData*)(Display->readBitmapData(szFileIcons));
 	IlvRGBBitmapData* _destdata = new IlvRGBBitmapData(sizeScreenW,
 													   sizeScreenH);
 
@@ -310,7 +311,7 @@ void AdxInterface::showAccueilWindow(IlvSystemView parent,
 		_accueil->initReDraw();
 	}
 
-	if (_accueil) 
+	if (_accueil)
 	{
 		_accueil->afficherPoste();
 	}
@@ -331,7 +332,7 @@ void AdxInterface::showChoix_OFWindow(IlvSystemView parent,
 	if(_choix_OF == NULL)
 	{
 		_choix_OF = new AdxChoix_OF( getDisplay(),
-			"&ChoixOF", "&ChoixOF", 
+			"&ChoixOF", "&ChoixOF",
 			this, bbox,0,IlvFalse,IlvFalse,parent);
 		// GBE 19/04/2013 Suppression des boutons dans la title bar
 		_choix_OF->disableTitleBarButtons();
@@ -341,7 +342,7 @@ void AdxInterface::showChoix_OFWindow(IlvSystemView parent,
 		_choix_OF->moveToScreen(IlvTopLeft);
 		_choix_OF->show();
 	}
-	else 
+	else
 		_choix_OF->hide();
 }
 
@@ -353,7 +354,7 @@ void AdxInterface::showChoix_BalanceWindow(IlvSystemView parent,
 	if(_choix_Balance == NULL)
 	{
 		_choix_Balance = new AdxChoix_Balance( getDisplay(),
-			"&ChoixBalance", "&ChoixBalance", 
+			"&ChoixBalance", "&ChoixBalance",
 			this, bbox,0,IlvFalse,IlvFalse,parent);
 		// GBE 19/04/2013 Suppression des boutons dans la title bar
 		_choix_Balance->disableTitleBarButtons();
@@ -363,7 +364,7 @@ void AdxInterface::showChoix_BalanceWindow(IlvSystemView parent,
 		_choix_Balance->moveToScreen(IlvTopLeft);
 		_choix_Balance->show();
 	}
-	else 
+	else
 		_choix_Balance->hide();
 }
 
@@ -375,7 +376,7 @@ void AdxInterface::showPesee_EtalonWindow(IlvSystemView parent,
 	if(_pesee_Etalon == NULL)
 	{
 		_pesee_Etalon = new AdxPesee_Etalon( getDisplay(),
-			"&PeseeEtalon", "&PeseeEtalon", 
+			"&PeseeEtalon", "&PeseeEtalon",
 			this, bbox,0,IlvFalse,IlvFalse,parent);
 		// GBE 19/04/2013 Suppression des boutons dans la title bar
 		_pesee_Etalon->disableTitleBarButtons();
@@ -385,7 +386,7 @@ void AdxInterface::showPesee_EtalonWindow(IlvSystemView parent,
 		_pesee_Etalon->moveToScreen(IlvTopLeft);
 		_pesee_Etalon->show();
 	}
-	else 
+	else
 		_pesee_Etalon->hide();
 }
 
@@ -407,7 +408,7 @@ void AdxInterface::showClavier_TactileWindow(IlvSystemView parent,
 		_clavier_Tactile->moveToScreen(IlvTopLeft);
 		_clavier_Tactile->show();
 	}
-	else 
+	else
 		_clavier_Tactile->hide();
 }
 
@@ -429,7 +430,7 @@ void AdxInterface::showSelection_OFWindow(IlvSystemView parent,
 		_selection_OF->moveToScreen(IlvTopLeft);
 		_selection_OF->show();
 	}
-	else 
+	else
 		_selection_OF->hide();
 }
 
@@ -451,7 +452,7 @@ void AdxInterface::showSelection_PhaseWindow(IlvSystemView parent,
 		_selection_Phase->moveToScreen(IlvTopLeft);
 		_selection_Phase->show();
 	}
-	else 
+	else
 		_selection_Phase->hide();
 }
 
@@ -473,7 +474,7 @@ void AdxInterface::showSelection_MWFWindow(IlvSystemView parent,
 		_selection_MWF->moveToScreen(IlvTopLeft);
 		_selection_MWF->show();
 	}
-	else 
+	else
 		_selection_MWF->hide();
 }
 
@@ -495,7 +496,7 @@ void AdxInterface::showSelection_LOTWindow(IlvSystemView parent,
 		_selection_LOT->moveToScreen(IlvTopLeft);
 		_selection_LOT->show();
 	}
-	else 
+	else
 		_selection_LOT->hide();
 }
 
@@ -517,7 +518,7 @@ void AdxInterface::showSelection_BalanceWindow(IlvSystemView parent,
 		_selection_Balance->moveToScreen(IlvTopLeft);
 		_selection_Balance->show();
 	}
-	else 
+	else
 		_selection_Balance->hide();
 }
 
@@ -539,7 +540,7 @@ void AdxInterface::showSelection_RecipientWindow(IlvSystemView parent,
 		_selection_Recipient->moveToScreen(IlvTopLeft);
 		_selection_Recipient->show();
 	}
-	else 
+	else
 		_selection_Recipient->hide();
 }
 
@@ -561,7 +562,7 @@ void AdxInterface::showSelection_EtalonLigneWindow(IlvSystemView parent,
 		_selection_Ligne->moveToScreen(IlvTopLeft);
 		_selection_Ligne->show();
 	}
-	else 
+	else
 		_selection_Ligne->hide();
 }
 
@@ -582,7 +583,7 @@ void AdxInterface::showPesee_OFWindow(IlvSystemView parent,
 		_pesee_OF->moveToScreen(IlvTopLeft);
 		_pesee_OF->show();
 	}
-	else 
+	else
 		_pesee_OF->hide();
 }
 
@@ -604,7 +605,7 @@ void AdxInterface::showPhrase_SecuWindow(IlvSystemView parent,
 		_phrase_Secu->moveToScreen(IlvTopLeft);
 		_phrase_Secu->show();
 	}
-	else 
+	else
 		_phrase_Secu->hide();
 }
 
@@ -626,7 +627,7 @@ void AdxInterface::showRecontrole_OFWindow(IlvSystemView parent,
 		_recontrole_OF->moveToScreen(IlvTopLeft);
 		_recontrole_OF->show();
 	}
-	else 
+	else
 		_recontrole_OF->hide();
 }
 
@@ -645,7 +646,7 @@ void AdxInterface::showMessageWindow(IlvSystemView parent,
 		_message->moveToScreen(IlvTopLeft);
 		_message->show();
 	}
-	else 
+	else
 		_message->hide();
 }
 
@@ -702,9 +703,9 @@ bool AdxInterface::lectureDictionnaire(bool appel)
 	}
 
 	_display = new IlvDisplay(_instance, _appName);
-	if (!_display || _display->isBad()) 
+	if (!_display || _display->isBad())
 	{
-		if (_display) 
+		if (_display)
 			delete _display;
 		return false;
 	}
@@ -719,7 +720,7 @@ bool AdxInterface::lectureDictionnaire(bool appel)
 	{
 		char* message = new char[60];
 		sprintf(message,"Erreur lecture %s",
-			szFileMessage); 
+			szFileMessage);
 		MessageBox(NULL,message,"Erreur",MB_OK);
 		delete [] message;
 		// force le panneau message à NULL
@@ -738,7 +739,7 @@ bool AdxInterface::lectureDictionnaire(bool appel)
 		{
 //			delete _message;   // le delete plante : pourquoi ?
 							   // il semble qu'il ne reste plus rien en
-							   // mémoire à la fin sans ce delete	
+							   // mémoire à la fin sans ce delete
 			_message = new AdxMessage(_display,
 					                  "Message",
 									  IlvGetMessage(_display, "&Message"),
