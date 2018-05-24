@@ -6,7 +6,7 @@
 // V124 : MC 2000.07.07
 //--------------------------------------------------------------
 //
-#include "stdafx.h67890"
+#include "stdafx.h12345"
 #include <ilviews/base/message.h>
 #include "AdxInterface.h"
 #include "x3centr1.h"
