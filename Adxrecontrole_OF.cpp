@@ -1,11 +1,14 @@
+
+CARLOS
+
 // ===============================================================================================================
 //		Project: Sage Enterprise Management Weighing Module
 //		Program: Adxrecontrole_OF.cpp
-//	Description: This program handles the processing needed to verify the Product/Lot/Sublot info 
+//	Description: This program handles the processing needed to verify the Product/Lot/Sublot info
 //				 (Re-check/Recontrole).
 // ===============================================================================================================
 //
-//	DLL			Date Last		
+//	DLL			Date Last
 //	Version		Modified		By						Change#		Description
 //	=======		==========		====================	========	==============================================
 //  6.4.2.2     04/25/2018      Neil/John               X3-70592	Invalid data was not returning to the same field
@@ -49,42 +52,42 @@ void AdxRecontrole_OF::SaisiContenuCabCB(IlvGraphic* g)
 					_separateurLot = m_data->getSeparateurLot();
 					alimentationZones(_separateurLot,"","");
 					break;
-			case 3 :	// article + lot 
+			case 3 :	// article + lot
 						_separateurArt = m_data->getSeparateurArt();
 						_separateurLot = m_data->getSeparateurLot();
 						if (m_data->getNumZoneArt()< m_data->getNumZoneLot())  //article avant lot
-							alimentationZones( _separateurArt,_separateurLot,"");		
-						else		 // lot avant article 	
-							alimentationZones(_separateurLot,_separateurArt,"");		
+							alimentationZones( _separateurArt,_separateurLot,"");
+						else		 // lot avant article
+							alimentationZones(_separateurLot,_separateurArt,"");
 						break;
 			case 4 :	// lot + slo
 						_separateurLot = m_data->getSeparateurLot();
 						_separateurSlo = m_data->getSeparateurSlo();
-						if (m_data->getNumZoneLot()< m_data->getNumZoneSlo())  // lot avant slo	
-							alimentationZones(_separateurLot,_separateurSlo,"");	
+						if (m_data->getNumZoneLot()< m_data->getNumZoneSlo())  // lot avant slo
+							alimentationZones(_separateurLot,_separateurSlo,"");
 						else
 							alimentationZones(_separateurSlo,_separateurLot,"");
 						break;
-			
+
 			case 5 :	// article + lot + slo
 						_separateurArt = m_data->getSeparateurArt();
 						_separateurLot = m_data->getSeparateurLot();
 						_separateurSlo = m_data->getSeparateurSlo();
-						
-						if  ((m_data->getNumZoneArt()< m_data->getNumZoneLot()) 
-						&&	(m_data->getNumZoneLot()< m_data->getNumZoneSlo())) // article avant lot et lot avant slo	
+
+						if  ((m_data->getNumZoneArt()< m_data->getNumZoneLot())
+						&&	(m_data->getNumZoneLot()< m_data->getNumZoneSlo())) // article avant lot et lot avant slo
 							// art/lot/slo
-							alimentationZones(_separateurArt,_separateurLot,_separateurSlo);	
-						else if ((m_data->getNumZoneLot()< m_data->getNumZoneSlo())	   
+							alimentationZones(_separateurArt,_separateurLot,_separateurSlo);
+						else if ((m_data->getNumZoneLot()< m_data->getNumZoneSlo())
 						&&		( m_data->getNumZoneSlo() < m_data->getNumZoneArt())) // lot avant slo et slo avant article
 							// lot/slo/art
 							alimentationZones(_separateurLot,_separateurSlo,_separateurArt);
-						else if ((m_data->getNumZoneSlo()< m_data->getNumZoneLot()) 
+						else if ((m_data->getNumZoneSlo()< m_data->getNumZoneLot())
 						&&		(m_data->getNumZoneLot()< m_data->getNumZoneArt())) //slo avant lot et lot avant article
 							// slo/lot/art
 							alimentationZones(_separateurSlo,_separateurLot,_separateurArt);
-						else if ((m_data->getNumZoneLot()< m_data->getNumZoneArt())		
-						&&	 (m_data->getNumZoneArt()< m_data->getNumZoneSlo()))	 //lot avant article et article avant slo		
+						else if ((m_data->getNumZoneLot()< m_data->getNumZoneArt())
+						&&	 (m_data->getNumZoneArt()< m_data->getNumZoneSlo()))	 //lot avant article et article avant slo
 							// lot/art/slo
 							alimentationZones(_separateurLot,_separateurArt,_separateurSlo);
 						break;
@@ -99,7 +102,7 @@ void AdxRecontrole_OF::SaisiContenuCabCB(IlvGraphic* g)
 			case 2 :	// lot
 						alimentationZonesLF(m_data->getLongueurLot2(),0 ,0);
 						break;
-			case 3 :	// article + lot 
+			case 3 :	// article + lot
 						if (m_data->getDebutArt() < m_data->getDebutLot())	//article avant lot
 							alimentationZonesLF(m_data->getLongueurArt(), m_data->getLongueurLot2(), 0);
 						else
@@ -112,8 +115,8 @@ void AdxRecontrole_OF::SaisiContenuCabCB(IlvGraphic* g)
 							alimentationZonesLF( m_data->getLongueurSlo(),m_data->getLongueurLot2(),0);
 						break;
 			case 5 :	// article + lot + slo
-						if ((m_data->getDebutArt() < m_data->getDebutLot()) 
-						&&	(m_data->getDebutLot() < m_data->getDebutSlo()))// article avant lot et lot avant slo	
+						if ((m_data->getDebutArt() < m_data->getDebutLot())
+						&&	(m_data->getDebutLot() < m_data->getDebutSlo()))// article avant lot et lot avant slo
 							// art/lot/slo
 							alimentationZonesLF(m_data->getLongueurArt(), m_data->getLongueurLot2(),m_data->getLongueurSlo());
 						else if ((m_data->getDebutLot() < m_data->getDebutSlo())
@@ -132,7 +135,7 @@ void AdxRecontrole_OF::SaisiContenuCabCB(IlvGraphic* g)
 			default:	break;
 
 		}
-	}	
+	}
 	controleValiditeZones();
 }
 
@@ -145,7 +148,7 @@ void AdxRecontrole_OF::controleValiditeZones()
 	// validate the fields
 	_composantOK = false;
 	_lotOK = false ;
-	_souslotOK = false ;	
+	_souslotOK = false ;
 
 
 	// envoyer un message : le re-contrôle a échoué
@@ -154,15 +157,15 @@ void AdxRecontrole_OF::controleValiditeZones()
 	switch (m_data->getRecontroleArticleCode())
 	{
 		case 2 :	// lot
-					// 12607 mm 11.2015 
+					// 12607 mm 11.2015
 					_composantOK = true;
 					_souslotOK = true ;
 					if (strcmp(m_data->getCurrentLot()->getLot(), getSaisieLot()->getLabel()) == 0)
 						_lotOK = true ;
 					if ( _lotOK)
 					{
-						setFocus(getSaisieLot());	
-						break;		
+						setFocus(getSaisieLot());
+						break;
 					}
 					if (!_lotOK)
 						validiteLotKo(&message);
@@ -172,12 +175,12 @@ void AdxRecontrole_OF::controleValiditeZones()
 					bufferedDraw(getSaisieLot());
 					reinitialiseEcran();
 					break;
-		case 3 :   // article + lot 
+		case 3 :   // article + lot
 				   // product + lot
-				   // 12607 mm 11.2015 
+				   // 12607 mm 11.2015
 					_souslotOK = true ;
 					if (strcmp(m_data->getCurrentComposant()->getComposant(), getSaisieComposant()->getLabel()) == 0)
-						_composantOK = true ;	
+						_composantOK = true ;
 					if (strcmp(m_data->getCurrentLot()->getLot(), getSaisieLot()->getLabel()) == 0)
 						_lotOK = true ;
 					if (_composantOK && _lotOK )
@@ -186,13 +189,13 @@ void AdxRecontrole_OF::controleValiditeZones()
 						setFocus(getSaisieLot());
 						break;
 					}
-					
+
 					if ( (!_composantOK) && ( !_lotOK))
 						validiteComposantLotKO(&message);
 					else if ( !_composantOK)
 						validiteComposantKo(&message);
 					else if ( !_lotOK)
-						validiteLotKo(&message);	
+						validiteLotKo(&message);
 					getInterface()->getMessage()->setPanneauAppelant(this);
 					getInterface()->envoieMessage(message, false);
 					getSaisieComposant()->setLabel("");
@@ -202,7 +205,7 @@ void AdxRecontrole_OF::controleValiditeZones()
 					reinitialiseEcran();
 					break;
 		case 4 :	// lot + sub-lot
-					// 12607 mm 11.2015 
+					// 12607 mm 11.2015
 					_composantOK = true;
 					if (strcmp(m_data->getCurrentLot()->getLot(), getSaisieLot()->getLabel()) == 0)
 						_lotOK = true ;
@@ -232,7 +235,7 @@ void AdxRecontrole_OF::controleValiditeZones()
 		case 5 :	// article + lot + slo
 					// product + lot + sub-lot
 					if (strcmp(m_data->getCurrentComposant()->getComposant(), getSaisieComposant()->getLabel()) == 0)
-						_composantOK = true ;	
+						_composantOK = true ;
 					if (strcmp(m_data->getCurrentLot()->getLot(), getSaisieLot()->getLabel()) == 0)
 						_lotOK = true ;
 					if (strcmp(m_data->getCurrentLot()->getSlo(), getSaisieSousLot()->getLabel()) == 0)
@@ -269,7 +272,7 @@ void AdxRecontrole_OF::controleValiditeZones()
 					reinitialiseEcran();
 					break;
 	}
-	delete [] message;	
+	delete [] message;
 }
 //---------------------------------------------------------------------------
 void AdxRecontrole_OF::reinitialiseEcran()
@@ -355,7 +358,7 @@ void AdxRecontrole_OF::alimentationZones(char *sep1 , char *sep2, char *sep3)
 	int lng = strlen(getSaisiContenuCab()->getLabel());
 
 	// zone1
-	_zone1  = new char[lng+1]; 
+	_zone1  = new char[lng+1];
 	_composant = strchr(_cab,sep1[0]);
 	if (_composant )
 	{
@@ -370,7 +373,7 @@ void AdxRecontrole_OF::alimentationZones(char *sep1 , char *sep2, char *sep3)
 	}
 
 	if (sep2!="")
-	{	
+	{
 		// zone2
 		_composant = _composant+1;	// élimination du sep1
 		_zone2 = new char [strlen(_composant)+1];
@@ -411,7 +414,7 @@ void AdxRecontrole_OF::alimentationZones(char *sep1 , char *sep2, char *sep3)
 	// Suppress blanks
 	if (m_data->getSuppBlanc()==2 )
 		suppressionBlancs( &_zone1,&_zone2,&_zone3);
-	
+
 
 	// remise dans l'ordre article/lot/slo avant affichage
 	// deliver in order of product/lot/sub-lot before display
@@ -422,8 +425,8 @@ void AdxRecontrole_OF::alimentationZones(char *sep1 , char *sep2, char *sep3)
 			bufferedDraw(getSaisieLot());
 			delete[] _zone1;
 			break;
-		case 3 :	// article + lot 
-			if ( m_data->getNumZoneLot()<m_data->getNumZoneArt())  // lot avant article 
+		case 3 :	// article + lot
+			if ( m_data->getNumZoneLot()<m_data->getNumZoneArt())  // lot avant article
 			{
 				_tmp =_zone1;
 				_zone1 = _zone2;	// article
@@ -451,8 +454,8 @@ void AdxRecontrole_OF::alimentationZones(char *sep1 , char *sep2, char *sep3)
 			delete[] _zone2;
 			break;
 		case 5 :	// article + lot + slo
-			if ((m_data->getNumZoneLot()< m_data->getNumZoneSlo())	   
-			&&	( m_data->getNumZoneSlo() < m_data->getNumZoneArt())) 
+			if ((m_data->getNumZoneLot()< m_data->getNumZoneSlo())
+			&&	( m_data->getNumZoneSlo() < m_data->getNumZoneArt()))
 			{
 				// lot/slo/art
 				_tmp =_zone1;
@@ -460,7 +463,7 @@ void AdxRecontrole_OF::alimentationZones(char *sep1 , char *sep2, char *sep3)
 				_zone3 = _zone2;
 				_zone2 = _tmp;
 			}
-			else if ((m_data->getNumZoneSlo()< m_data->getNumZoneLot()) 
+			else if ((m_data->getNumZoneSlo()< m_data->getNumZoneLot())
 			&&	(m_data->getNumZoneLot()< m_data->getNumZoneArt()))
 			{
 				// slo/lot/art
@@ -468,7 +471,7 @@ void AdxRecontrole_OF::alimentationZones(char *sep1 , char *sep2, char *sep3)
 				_zone1 = _zone3;
 				_zone3 = _tmp ;
 			}
-			else if ((m_data->getNumZoneLot()< m_data->getNumZoneArt())		
+			else if ((m_data->getNumZoneLot()< m_data->getNumZoneArt())
 			&&	 (m_data->getNumZoneArt()< m_data->getNumZoneSlo()))
 			{
 				// lot/art/slo
@@ -497,7 +500,7 @@ void AdxRecontrole_OF::separateurNonTrouve()
 	sprintf( message,"%s ", IlvGetMessage(getInterface()->getDisplay(),"&SeparateurNonTrouve"));
 	getInterface()->getMessage()->setPanneauAppelant(this);
 	getInterface()->envoieMessage(message, false);
-	delete [] message;	
+	delete [] message;
 }
 //---------------------------------------------------------------------------
 void AdxRecontrole_OF::suppressionBlancs(char** zone1, char** zone2, char** zone3)
@@ -531,22 +534,22 @@ void AdxRecontrole_OF::alimentationZonesLF(int lgZone1, int lgZone2 ,int lgZone3
 	char* _zone3 = NULL;
 	char* _tmp = NULL ;
 	int offset1, offset2, offset3;  // Jira X3-84572
-	
-	_zone1= new char[lgZone1 + 1]; 
 
-	// X3-84572.sn  
-	// We must consider the starting positions BEFORE we divide up the string into 
+	_zone1= new char[lgZone1 + 1];
+
+	// X3-84572.sn
+	// We must consider the starting positions BEFORE we divide up the string into
 	// the individual fields (product, lot, sub-lot)
 	offset1 = 0;
 	offset2 = 0;
 	offset3 = 0;
-	
+
 	switch (m_data->getRecontroleArticleCode())
 	{
 		case 2 : // lot
 			offset1 = m_data->getDebutLot() - 1;
 			break;
-		case 3 : // article + lot 
+		case 3 : // article + lot
 			if (m_data->getDebutLot() < m_data->getDebutArt())
 			{
 				offset1 = m_data->getDebutLot() - 1;
@@ -641,14 +644,14 @@ void AdxRecontrole_OF::alimentationZonesLF(int lgZone1, int lgZone2 ,int lgZone3
 		    break;
 	}
 	// X3-84572.en
-	
+
 //	strncpy( _zone1,_cab,lgZone1);			X3-84572.o
 	strncpy( _zone1,_cab+offset1,lgZone1);  // X3-84572.n
 	_zone1[lgZone1] = '\0';
 
 	if (lgZone2)
 	{
-		_zone2= new char[lgZone2 + 1]; 
+		_zone2= new char[lgZone2 + 1];
 //		strncpy( _zone2, _cab+lgZone1, lgZone2);					X3-84572.o
 		strncpy( _zone2, _cab+offset1+lgZone1+offset2, lgZone2);	// X3-84572.n
 
@@ -657,7 +660,7 @@ void AdxRecontrole_OF::alimentationZonesLF(int lgZone1, int lgZone2 ,int lgZone3
 
 	if (lgZone3)
 	{
-		_zone3= new char[lgZone3 + 1]; 
+		_zone3= new char[lgZone3 + 1];
 //		strncpy( _zone3, _cab+lgZone1+lgZone2, lgZone3);							X3-84572.o
 		strncpy( _zone3, _cab+offset1+lgZone1+offset2+lgZone2+offset3, lgZone3);	// X3-84572.n
 		_zone3[lgZone3] = '\0';
@@ -679,7 +682,7 @@ void AdxRecontrole_OF::alimentationZonesLF(int lgZone1, int lgZone2 ,int lgZone3
 				bufferedDraw(getSaisieLot());
 				delete[] _zone1;
 				break;
-		case 3 :// article + lot 
+		case 3 :// article + lot
 				if (m_data->getDebutLot() < m_data->getDebutArt())	// lot avant article
 				{
 					_tmp =_zone1;
@@ -750,33 +753,33 @@ void AdxRecontrole_OF::alimentationZonesLF(int lgZone1, int lgZone2 ,int lgZone3
 //---------------------------------------------------------------------------
 void AdxRecontrole_OF::EntreeTextFieldCB(IlvGraphic* g)
 {
-	AdxInterface* m_interface = getInterface();	
+	AdxInterface* m_interface = getInterface();
 	AdxData* m_data = getInterface()->getDonnees();
 	// mm 06.2015 - découpage du CAB
 	// cutting of the barcode
 	if (m_data->getDecoupageCAB() == 2) return ;
 
 	_controleFait = false;
-	_champAppelant = (IlvTextField*) g;	
+	_champAppelant = (IlvTextField*) g;
 // constitution du bandeau des messages
 // constitution of the message banner
 	CString string(IlvGetMessage(getDisplay(), "&Saisir"));
 	string += " ";
 	if (_champAppelant == getSaisieComposant())
 		string += IlvGetMessage(getDisplay(),"&Composant1");
-	if (_champAppelant == getSaisieLot())	
+	if (_champAppelant == getSaisieLot())
 		if (m_interface->getFonctionEnCours() == 3
 		&& m_interface->getPeseeEnCuve())
 			string += IlvGetMessage(getDisplay(),"&Cuve1");
 		else
 			string += IlvGetMessage(getDisplay(),"&Lot1");
 	// mm 03.10 - modification du recontrôle
-	if (_champAppelant == getSaisieSousLot())	
+	if (_champAppelant == getSaisieSousLot())
 		string += IlvGetMessage(getDisplay(),"&SousLot1");
 
 
 	getmessage()->setLabel(string);
-	bufferedDraw(getmessage()); 
+	bufferedDraw(getmessage());
 }
 
 
@@ -806,7 +809,7 @@ void AdxRecontrole_OF::SaisieLotCB(IlvGraphic* g)
 
 	// mm 06.2015 - découpage du CAB
 	if ((m_data->getDecoupageCAB() == 2) && (getInterface()->getFonctionEnCours()!= 3))	// hors pesee en fabrication
-	{	
+	{
 		// mm 12.2015
 		if (!_composantOK && !_lotOK &&! _souslotOK)
 			return ;
@@ -829,9 +832,9 @@ void AdxRecontrole_OF::SaisieLotCB(IlvGraphic* g)
 
 	if (!_controleFait && strcmp(getSaisieLot()->getLabel(), "") != 0)
 	{
-		controleLot();	
+		controleLot();
 		if (!_lotOK)		// X3-70592
-			getSaisieLot()->setChangeFocusOnValidation(false);  
+			getSaisieLot()->setChangeFocusOnValidation(false);
 	}
 
 	if (!m_interface->getRecontrole_OF()->getSaisieSousLot()->isActive())		// champs sous-lot inactif
@@ -849,7 +852,7 @@ void AdxRecontrole_OF::SaisieLotCB(IlvGraphic* g)
 			if (_lotOK )
 			{
 				quitter();
-				retourOK();	
+				retourOK();
 			}
 		}
 
@@ -864,7 +867,7 @@ void AdxRecontrole_OF::SaisieSousLotCB(IlvGraphic* g)
 	AdxData* m_data = m_interface->getDonnees();
 	// mm 06.2015 - découpage du CAB
 	if ((m_data->getDecoupageCAB() == 2) && (getInterface()->getFonctionEnCours() != 3))	// hors pesee en fabrication
-	{	
+	{
 		// mm 12.2015
 		if (!_composantOK && !_lotOK &&! _souslotOK)
 			return ;
@@ -889,14 +892,14 @@ void AdxRecontrole_OF::SaisieSousLotCB(IlvGraphic* g)
 	{
 		controleSousLot();
 		if (!_souslotOK)		// X3-70592
-			getSaisieSousLot()->setChangeFocusOnValidation(false);  
-		
+			getSaisieSousLot()->setChangeFocusOnValidation(false);
+
 		if (m_interface->getRecontrole_OF()->getSaisieComposant()->isActive())  // champs composant actif
 		{
 			if (_souslotOK && _composantOK && _lotOK)
 			{
 				quitter();
-				retourOK();		
+				retourOK();
 			}
 		}
 		else
@@ -904,7 +907,7 @@ void AdxRecontrole_OF::SaisieSousLotCB(IlvGraphic* g)
 			if (_souslotOK && _lotOK)
 			{
 				quitter();
-				retourOK();	
+				retourOK();
 			}
 		}
 	}
@@ -1036,7 +1039,7 @@ bool AdxRecontrole_OF::controleComposant()
 					"&ComposantControleDifferent"),
 				getSaisieComposant()->getLabel(),
 				IlvGetMessage(m_interface->getDisplay(),
-					"&Recontroler?")); 
+					"&Recontroler?"));
 		m_interface->getMessage()->setPanneauAppelant(this);
 		_controleFait = true;
 		if (m_interface->envoieMessage(message,true) == true)
@@ -1074,8 +1077,8 @@ bool AdxRecontrole_OF::controleLot()
 	// 03.10 mm - modification du re-contrôle OF
 	if ((m_interface->getFonctionEnCours() == 3) && (m_interface->getPeseeEnCuve()) )
 		j = sprintf(szTemp,"%s", m_data->getCurrentLot()->getCuve());
-	else 
-		j = sprintf(szTemp,"%s", m_data->getCurrentLot()->getLot());	
+	else
+		j = sprintf(szTemp,"%s", m_data->getCurrentLot()->getLot());
 	if (strcmp(szTemp, getSaisieLot()->getLabel()) == 0)
 	{
 		_lotOK = true;
@@ -1096,17 +1099,17 @@ bool AdxRecontrole_OF::controleLot()
 					"&CuveControleeDifferente"),
 				getSaisieLot()->getLabel(),
 				IlvGetMessage(m_interface->getDisplay(),
-					"&Recontroler?")); 
+					"&Recontroler?"));
 		else
 			sprintf(message,"%s = %s : %s ",
 				IlvGetMessage(m_interface->getDisplay(),
 					"&LotControleDifferent"),
 				getSaisieLot()->getLabel(),
 				IlvGetMessage(m_interface->getDisplay(),
-					"&Recontroler?")); 
+					"&Recontroler?"));
 		getInterface()->getMessage()->setPanneauAppelant(this);
 		_controleFait = true;
-		if (m_interface->envoieMessage(message,true) == true) 
+		if (m_interface->envoieMessage(message,true) == true)
 		{
 			delete [] message;
 //			MessageBox(NULL,getSaisieLot()->getLabel(),"getSaisieLot()",MB_OK);
@@ -1153,7 +1156,7 @@ bool AdxRecontrole_OF::controleSousLot()
 					"&SousLotControleDifferent"),
 				getSaisieSousLot()->getLabel(),
 				IlvGetMessage(m_interface->getDisplay(),
-					"&Recontroler?")); 
+					"&Recontroler?"));
 		m_interface->getMessage()->setPanneauAppelant(this);
 		_controleFait = true;
 		if (m_interface->envoieMessage(message,true) == true)
@@ -1188,11 +1191,11 @@ void AdxRecontrole_OF::retourOK()
 	// APCPRD-2636 mm 08.2013
 	if ((!pesee_OF->getSaisiePoidsPese()->isEditable()) && (!pesee_OF->getBalanceChoisie()->getConnecte()))
 	{
-		 pesee_OF->getSaisiePoidsPese()->setEditable(true);	  
+		 pesee_OF->getSaisiePoidsPese()->setEditable(true);
 	}
 
 
-	if (pesee_OF->getBoutonAppelant() == 
+	if (pesee_OF->getBoutonAppelant() ==
 		pesee_OF->gettarer())
 	{
 		pesee_OF->tarerCB(pesee_OF->gettarer());
