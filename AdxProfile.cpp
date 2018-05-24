@@ -7,7 +7,7 @@
 
 #include "stdafx.h"
 #include "AdxProfile.h"
-
+#john added this line
 
 #john added this comment
 
@@ -33,7 +33,7 @@ Paramètres	:	Nom de la section générale
 Retour		: Bool
 Auteur		: Marc
 Créé le		: 19/06/98
-Modifié le  : 
+Modifié le  :
 
 ------------------------------------------------------- */
 BOOL AdxProfile_PutValue (char* pszSectionName, char* pszParamName, char* pszValeur)
@@ -56,7 +56,7 @@ Paramètres	:	Nom de la section générale
 Retour		: Bool
 Auteur		: Marc
 Créé le		: 27/03/98
-Modifié le  : 
+Modifié le  :
 
 ------------------------------------------------------- */
 BOOL AdxProfile_GiveValue (char* pszSectionName, char* pszParamName, char** ppszRetour)
@@ -81,10 +81,10 @@ BOOL AdxProfile_GiveValue (char* pszSectionName, char* pszParamName, char** ppsz
 		*ppszRetour = (char*)malloc ((dwRet + 1) * sizeof(char));
 		if (*ppszRetour == NULL)
 			return (FALSE);
-		
+
 		sprintf (*ppszRetour, "%s", &szTemp[0]);
-	}	
-	// S'il y a quelquechose dans dwRet, 
+	}
+	// S'il y a quelquechose dans dwRet,
 	// c'est qu'il a trouvé la section ou la valeur par défault
 	return (dwRet > 0 ? TRUE : FALSE );
 }
@@ -103,7 +103,7 @@ Paramètres	:	Nom de la section
 Retour		: Nombre de caracteres stockés
 Auteur		: Marc
 Créé le		: 19/06/98
-Modifié le  : 
+Modifié le  :
 
 ------------------------------------------------------- */
 DWORD AdxProfile_SetStandardValue (char* pszSectionName, char* pszParamName, char* pszRetour, DWORD dwLong)
@@ -116,7 +116,7 @@ DWORD AdxProfile_SetStandardValue (char* pszSectionName, char* pszParamName, cha
 	dwRet = 0;
 	i = 0;
 	// On recherche d'abord la section
-	while (_stricmp (sDefault[i].dvSection, pszSectionName) != 0) 
+	while (_stricmp (sDefault[i].dvSection, pszSectionName) != 0)
 	{
 		if (sDefault[i].dvSection[0] == 0)
 
@@ -178,7 +178,7 @@ Paramètres	:	Adresse de la chaine a renseigner
 Retour		: rien
 Auteur		: Marc
 Créé le		: 03/04/98
-Modifié le  : 
+Modifié le  :
 ------------------------------------------------------- */
 void AdxProfile_GiveFileIniName (char* pszRetour, int nLong)
 {
@@ -199,7 +199,7 @@ Paramètres	:	Adresse de la chaine a renseigner
 Retour		: rien
 Auteur		: Marc
 Créé le		: 29/06/98
-Modifié le  : 11/05/07 
+Modifié le  : 11/05/07
 
 ------------------------------------------------------- */
 void AdxProfile_GiveFileDirectory (char* pszRetour, int nLong)
@@ -232,11 +232,11 @@ Paramètres	:	Nouveau chemin du fichier .ini
 
 Retour		: rien
 Auteur		: Muriel
-Créé le		: 11/05/07 
-Modifié le  : 
+Créé le		: 11/05/07
+Modifié le  :
 
 ------------------------------------------------------- */
-void  setPathIni(const char* pathIni) 
+void  setPathIni(const char* pathIni)
 {
 	if( _pathIni != NULL)
 		delete [] _pathIni;
